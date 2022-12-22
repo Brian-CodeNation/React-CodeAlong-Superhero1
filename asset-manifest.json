@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/React-CodeAlong-Superhero1/static/css/main.bdb4c86b.css",
+    "main.js": "/React-CodeAlong-Superhero1/static/js/main.8cc906b5.js",
+    "index.html": "/React-CodeAlong-Superhero1/index.html",
+    "main.bdb4c86b.css.map": "/React-CodeAlong-Superhero1/static/css/main.bdb4c86b.css.map",
+    "main.8cc906b5.js.map": "/React-CodeAlong-Superhero1/static/js/main.8cc906b5.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.bdb4c86b.css",
+    "static/js/main.8cc906b5.js"
+  ]
+}
