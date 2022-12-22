@@ -1,25 +1,70 @@
-import logo from './logo.svg';
+import { useState } from 'react';
+import { allHeroes } from './heroData';
 import './App.css';
 
-function App() {
+const App = () => {
+  
+  const [favourites, setFavourites] = useState([]);
+
+  const handleAddToFav = (hero) => {
+    let newFavArr = [...favourites];
+    newFavArr.push(hero);
+    setFavourites(newFavArr);
+  } 
+
+  const handleRemove = (index) => {
+    let newFavArr = [...favourites];
+    newFavArr.splice(index, 1);
+    setFavourites(newFavArr);
+  } 
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <h1>HERO INFORMATION</h1>   
+
+      <div>
+        <h3>FAVOURITE HEROES</h3>
+        {favourites.map((favHero, index) => {
+        return <Favourites key={index} removeFav={() => handleRemove(index)} favHeroData={favHero} />
+      })}
+      </div>
+
+      <h3>ALL HEROES</h3>
+      {allHeroes.map((heroInfo, index) => {
+        return <HeroCard key={index} heroObj={heroInfo} favFunc={handleAddToFav} />
+      })}
+
+    </>
   );
+};
+
+const Favourites = ({ favHeroData, removeFav }) => {
+  return (
+    <div>
+      <p>{favHeroData.hero}</p>
+      <button onClick={removeFav}>X</button>
+    </div>
+  )
+}
+
+const HeroCard = (props) => {
+  const [show, setShow] = useState(false);
+
+  return (
+    <>
+      <p>HERO: {props.heroObj.hero}</p>
+
+      {show && (
+        <div>
+          <p>INFO: {props.heroObj.info}</p>
+          <p>VILLAIN: {props.heroObj.villain}</p>
+        </div>
+      )}     
+
+      <button onClick={() => setShow(!show)}>{ show ? "HIDE INFO" : "SHOW INFO" }</button>
+      <button onClick={() => props.favFunc(props.heroObj)}>ADD TO FAVOURITES</button>
+    </>
+  )
 }
 
 export default App;
